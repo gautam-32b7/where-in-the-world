@@ -1,7 +1,9 @@
+import Header from "./components/Header.jsx";
+
 export default function App() {
   return (
-    <div>
-      <h1>Where in the world?</h1>
+    <div className="max-w-7xl mx-auto">
+      <Header />
     </div>
   );
 }
