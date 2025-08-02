@@ -2,14 +2,14 @@ import { useState } from "react";
 
 import { ChevronUp, ChevronDown } from "lucide-react";
 
-export default function FilterByRegion() {
+export default function FilterByRegion({ onFilterByRegion }) {
   const [showOptions, setShowOptions] = useState(false);
 
   // OPTIONS -> Africa America Asia Europe Oceania
-  const options = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const options = ["All", "Africa", "America", "Asia", "Europe", "Oceania"];
 
   const handleClick = (option) => {
-    console.log(option);
+    onFilterByRegion(option);
     setShowOptions(false);
   };
 

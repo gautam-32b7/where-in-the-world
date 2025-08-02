@@ -7,13 +7,26 @@ import CountriesGrid from "./components/CountriesGrid.jsx";
 import { data } from "./assets/data.js";
 
 export default function App() {
-  const [countries, setCountries] = useState(data);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
+  // Handle filter by region
+  const handleFilterByRegion = (selectedRegion) => {
+    if (selectedRegion !== "All") {
+      setFilteredCountries(
+        data.filter((country) => country.region === selectedRegion)
+      );
+    } else {
+      setFilteredCountries([]);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
       <Header />
-      <SearchFilterByRegionFlex />
-      <CountriesGrid countries={countries} />
+      <SearchFilterByRegionFlex onFilterByRegion={handleFilterByRegion} />
+      <CountriesGrid
+        countries={filteredCountries.length > 0 ? filteredCountries : data}
+      />
     </div>
   );
 }
