@@ -13,7 +13,7 @@ export default function App() {
     <div className="max-w-7xl mx-auto">
       <Header />
       <SearchFilterByRegionFlex />
-      <CountriesGrid />
+      <CountriesGrid countries={countries} />
     </div>
   );
 }
