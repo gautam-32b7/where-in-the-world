@@ -1,4 +1,4 @@
-import Search from "./Search.jsx";
+import Search from "./Searchbar.jsx";
 import FilterByRegion from "./FilterByRegion.jsx";
 
 export default function SearchFilterByRegionFlex() {
