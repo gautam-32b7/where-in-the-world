@@ -23,7 +23,7 @@ export default function FilterByRegion() {
         {showOptions ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
       </button>
       {showOptions && (
-        <ul className="absolute left-0 top-full border border-gray-300 rounded w-full z-10">
+        <ul className="absolute left-0 top-full border border-gray-300 rounded w-full z-10 bg-white">
           {options.map((option, index) => (
             <li
               key={index}
