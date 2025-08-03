@@ -9,7 +9,7 @@ import { data } from "./assets/data.js";
 export default function App() {
   const [filteredCountries, setFilteredCountries] = useState([]);
 
-  // Handle filter by region
+  // Filter by region
   const handleFilterByRegion = (selectedRegion) => {
     if (selectedRegion !== "All") {
       setFilteredCountries(
