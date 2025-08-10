@@ -11,7 +11,7 @@ export default function CountryProfile({ country }) {
     capital,
     topLevelDomain,
     currency,
-    languages,
+    language,
     borders,
     flag,
   } = country;
@@ -64,7 +64,7 @@ export default function CountryProfile({ country }) {
                 <span className="text-gray-900 font-medium">
                   Top Level Domain:
                 </span>
-                <span className="text-gray-500">{topLevelDomain}</span>
+                <span className="text-gray-500">{topLevelDomain[0]}</span>
               </p>
               <p className="flex items-center gap-1 mb-2">
                 <span className="text-gray-900 font-medium">Currency:</span>
@@ -72,7 +72,7 @@ export default function CountryProfile({ country }) {
               </p>
               <p className="flex items-center gap-1 mb-2">
                 <span className="text-gray-900 font-medium">Language:</span>
-                <span className="text-gray-500">{languages}</span>
+                <span className="text-gray-500">{language}</span>
               </p>
             </div>
           </div>
