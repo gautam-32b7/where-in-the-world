@@ -2,12 +2,13 @@ import { useState } from "react";
 
 import { Search } from "lucide-react";
 
-export default function Searchbar({ trie, query, setQuery }) {
+export default function Searchbar({ trie, fetchCountryDetails }) {
   const [suggestions, setSuggestions] = useState([]);
+  const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("HANDLE SUBMIT");
+    fetchCountryDetails(query);
   };
 
   const handleChange = (e) => {
@@ -33,6 +34,7 @@ export default function Searchbar({ trie, query, setQuery }) {
           type="text"
           value={query}
           placeholder="Search for a country ..."
+          name="query"
           onChange={handleChange}
           className="pl-12 pr-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 w-sm"
         />

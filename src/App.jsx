@@ -9,7 +9,7 @@ import { Trie } from "./utils/Trie.js";
 
 export default function App() {
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [query, setQuery] = useState("");
+  const [countryDetails, setCountryDetails] = useState();
 
   // Filter by region
   const handleFilterByRegion = (selectedRegion) => {
@@ -29,14 +29,18 @@ export default function App() {
     return t;
   }, []);
 
+  // Fetch country details
+  const fetchCountryDetails = (country) => {
+    setCountryDetails(data.find((c) => c.name === country));
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
       <Header />
       <SearchFilterByRegionFlex
         onFilterByRegion={handleFilterByRegion}
         trie={trie}
-        query={query}
-        setQuery={setQuery}
+        fetchCountryDetails={fetchCountryDetails}
       />
       <CountriesGrid
         countries={filteredCountries.length > 0 ? filteredCountries : data}
