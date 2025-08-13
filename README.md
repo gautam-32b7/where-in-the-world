@@ -16,7 +16,7 @@ It features a **Trie-based autocomplete search bar, continent-based filtering** 
 ## ✨ Features
 - **Autocomplete Search**: Implemented using the **Trie data structure** for fast and efficient country name suggestions.
 - **Filter by Continent**: Easily narrow down countries by selecting a region such as Asia, Europe, Africa, America or Oceania.
-- **Dark Mode**: Toggle between light and dark themes for comfortable viewing.
+
 - **Detailed Country Information**: View details such as:
     - Name & native name
     - Capital
