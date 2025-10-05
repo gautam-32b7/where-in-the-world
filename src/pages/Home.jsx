@@ -2,6 +2,9 @@ import { useState } from "react";
 
 import { Search, ChevronDown, ChevronUp } from "lucide-react";
 
+import { countries } from "../assets/data/countries.js";
+import CountryCard from "../components/CountryCard.jsx";
+
 const regionsItem = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
 export default function Home() {
@@ -10,7 +13,7 @@ export default function Home() {
   return (
     <div>
       {/* Search for a country */}
-      <div className="p-4 md:p-8 md:flex items-start justify-between mb-8">
+      <div className="p-4 md:p-8 md:flex items-start justify-between">
         <form className="mb-3">
           <div className="relative">
             <Search className="absolute top-1/2 left-2 -translate-y-1/2 text-gray-500" />
@@ -47,7 +50,11 @@ export default function Home() {
       </div>
 
       {/* Countries List */}
-      <h2>COUNTRIES LIST</h2>
+      <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {countries.map((country) => (
+          <CountryCard country={country} />
+        ))}
+      </div>
     </div>
   );
 }
