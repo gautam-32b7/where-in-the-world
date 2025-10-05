@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import formatPopulation from "../utils/formatPopulation.js";
+
 export default function CountryCard({ country }) {
   return (
     <Link
@@ -20,7 +22,9 @@ export default function CountryCard({ country }) {
           {/* Population */}
           <p className="flex items-center space-x-3 mb-2">
             <span className="font-medium">Population:</span>
-            <span className="text-gray-600">{country.population}</span>
+            <span className="text-gray-600">
+              {formatPopulation(country.population)}
+            </span>
           </p>
           {/* Region */}
           <p className="flex items-center space-x-3 mb-2">
