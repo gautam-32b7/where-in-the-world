@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 import CountryCard from "../components/CountryCard.jsx";
 
 import { countries } from "../assets/data/countries.js";
+import Trie from "../utils/Trie.js";
 
 import { Search, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -12,6 +14,7 @@ const regionsItem = ["Africa", "America", "Asia", "Europe", "Oceania"];
 export default function Home() {
   const [isRegion, setIsRegion] = useState(false);
   const [selectedRegion, isSelectedRegion] = useState("");
+  const navigate = useNavigate();
 
   // Handles region selection: updates the selected region
   // and closes the region dropdown menu
@@ -26,20 +29,79 @@ export default function Home() {
     ? countries.filter((country) => country.region === selectedRegion)
     : countries;
 
+  // Inserting countries into Trie data structure
+  const [trie] = useState(() => {
+    const t = new Trie();
+    countries.forEach((country) => t.insert(country.name));
+    return t;
+  });
+
+  const [input, setInput] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // useEffect to update autocomplete suggestions whenever the input changes
+  useEffect(() => {
+    if (input.length > 0) {
+      const results = trie.search(input);
+      setSuggestions(results);
+      setShowSuggestions(true);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [input, trie]);
+
+  // Handle user selection from the suggestions dropdown.
+  const handleSelection = (word) => {
+    setInput(word);
+    setShowSuggestions(false);
+    setSuggestions([]);
+  };
+
+  // handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!input.length) {
+      return;
+    }
+    navigate(`/${input}`);
+    setInput("");
+  };
+
   return (
     <div>
       {/* Search input for filtering countries by name */}
       <div className="p-4 md:p-8 md:flex items-start justify-between">
-        <form className="mb-3">
-          <div className="relative">
-            <Search className="absolute top-1/2 left-2 -translate-y-1/2 text-gray-500" />
-            <input
-              type="text"
-              placeholder="Search for a country..."
-              className="font-[inherit] border py-2 px-10 w-sm border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
-          </div>
-        </form>
+        <div className="relative">
+          <form onSubmit={handleSubmit} className="mb-1">
+            <div className="relative">
+              <Search className="absolute top-1/2 left-2 -translate-y-1/2 text-gray-500" />
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Search for a country (e.g India)"
+                className="font-[inherit] border py-2 px-10 w-sm border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          </form>
+
+          {/* Conditionally display the autocomplete dropmenu */}
+          {showSuggestions && suggestions.length > 0 && (
+            <ul className="border border-gray-300 absolute w-full rounded-lg overflow-hidden">
+              {suggestions.map((word, idx) => (
+                <li
+                  key={idx}
+                  onClick={() => handleSelection(word)}
+                  className="px-2 py-1 cursor-pointer hover:bg-gray-50"
+                >
+                  {word}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         {/* Dropdown menu to filter countries by region */}
         <div className="relative">

@@ -3,8 +3,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import App from "./App.jsx";
+
 import Home from "./pages/Home.jsx";
 import CountryProfile from "./pages/CountryProfile.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 import "./index.css";
 
@@ -15,6 +17,7 @@ createRoot(document.getElementById("root")).render(
         <Route element={<App />}>
           <Route index element={<Home />} />
           <Route path=":slug" element={<CountryProfile />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
