@@ -82,7 +82,7 @@ export default function Home() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Search for a country (e.g India)"
-                className="font-[inherit] border py-2 px-10 w-sm border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="font-[inherit] border py-2 px-10 w-full md:w-sm border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           </form>
