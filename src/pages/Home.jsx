@@ -89,7 +89,7 @@ export default function Home() {
 
           {/* Conditionally display the autocomplete dropmenu */}
           {showSuggestions && suggestions.length > 0 && (
-            <ul className="border border-gray-300 absolute w-full rounded-lg overflow-hidden">
+            <ul className="bg-white border border-gray-300 absolute w-full rounded-lg overflow-hidden z-20">
               {suggestions.map((word, idx) => (
                 <li
                   key={idx}
