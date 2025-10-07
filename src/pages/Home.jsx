@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-import { Search, ChevronDown, ChevronUp } from "lucide-react";
-
-import { countries } from "../assets/data/countries.js";
 import CountryCard from "../components/CountryCard.jsx";
 
-// Optios -> Africa, America, Asia, Europe, Oceania
+import { countries } from "../assets/data/countries.js";
+
+import { Search, ChevronDown, ChevronUp } from "lucide-react";
+
+// List of available regions for filtering countries in the drop down menu
 const regionsItem = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
 
   return (
     <div>
-      {/* Search for a country */}
+      {/* Search input for filtering countries by name */}
       <div className="p-4 md:p-8 md:flex items-start justify-between">
         <form className="mb-3">
           <div className="relative">
@@ -40,7 +41,7 @@ export default function Home() {
           </div>
         </form>
 
-        {/* Filter By Region */}
+        {/* Dropdown menu to filter countries by region */}
         <div className="relative">
           <button
             onClick={() => setIsRegion((t) => !t)}
@@ -65,7 +66,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Countries List */}
+      {/* Grid displaying the list of coutries using CountryCard component */}
       <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {filteredCountries.map((country) => (
           <CountryCard country={country} key={country.name} />

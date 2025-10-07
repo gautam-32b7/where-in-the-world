@@ -1,13 +1,16 @@
 import { Link, useParams } from "react-router";
 
-import { MoveLeft } from "lucide-react";
-
 import { countries } from "../assets/data/countries.js";
 import formatPopulation from "../utils/formatPopulation.js";
 
+import { MoveLeft } from "lucide-react";
+
 export default function CountryProfile() {
   const { slug } = useParams();
+
+  // Find the country object whose slug matches the current URL parameter
   const country = countries.find((country) => country.slug === slug);
+  
   return (
     <div className="p-4 md:p-8 mb-8">
       <Link
