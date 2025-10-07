@@ -5,10 +5,25 @@ import { Search, ChevronDown, ChevronUp } from "lucide-react";
 import { countries } from "../assets/data/countries.js";
 import CountryCard from "../components/CountryCard.jsx";
 
+// Optios -> Africa, America, Asia, Europe, Oceania
 const regionsItem = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
 export default function Home() {
   const [isRegion, setIsRegion] = useState(false);
+  const [selectedRegion, isSelectedRegion] = useState("");
+
+  // Handles region selection: updates the selected region
+  // and closes the region dropdown menu
+  const handleSelectedRegion = (region) => {
+    isSelectedRegion(region);
+    setIsRegion(false);
+  };
+
+  // Filter countries by the selected region.
+  // If no region is selected, include all countries.
+  const filteredCountries = selectedRegion
+    ? countries.filter((country) => country.region === selectedRegion)
+    : countries;
 
   return (
     <div>
@@ -38,6 +53,7 @@ export default function Home() {
             <ul className="bg-white border border-gray-100 rounded-lg absolute left-0  w-full z-10">
               {regionsItem.map((region) => (
                 <li
+                  onClick={() => handleSelectedRegion(region)}
                   key={region}
                   className="py-1 px-2 cursor-pointer hover:bg-gray-50"
                 >
@@ -51,8 +67,8 @@ export default function Home() {
 
       {/* Countries List */}
       <div className="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {countries.map((country) => (
-          <CountryCard country={country} />
+        {filteredCountries.map((country) => (
+          <CountryCard country={country} key={country.name} />
         ))}
       </div>
     </div>
