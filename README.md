@@ -49,3 +49,4 @@ npm run dev
 
 ## 📷 Screenshots
 | ![screenshot_1](public/screenshots/screenshot_1.png)| ![screenshot_2](public/screenshots/screenshot_2.png) |
+|--------------|---------------|
