@@ -20,7 +20,7 @@
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 - **Frontend:** React.js
 - **Styling:** Tailwind css
 - **Routing:** React Router
@@ -28,7 +28,7 @@
 
 ---
 
-## Getting started
+## 💻 Getting started
 Follow these steps to run the project locally:
 
 ```
@@ -47,4 +47,5 @@ npm run dev
 
 --- 
 
-## Screenshots
+## 📷 Screenshots
+| ![screenshot_1](public/screenshots/screenshot_1.png)| ![screenshot_2](public/screenshots/screenshot_2.png) |
